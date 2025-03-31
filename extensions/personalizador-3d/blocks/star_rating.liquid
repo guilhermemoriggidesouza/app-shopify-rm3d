@@ -22,10 +22,11 @@
 
 <script>
   window.addEventListener('load', function () {
-    const clientId = "{{ product.metafields.custom.client_id }}"
-    const clientSecret = "{{ product.metafields.custom.client_secret }}"
-    const tenant = "{{ product.metafields.custom.tenant_rm3d_model }}"
-    const cabecalho = {{ product.metafields.custom.habilitar_cabecalho_visualizador_3d }}
+    const rm3dData = JSON.parse("{{ page.metafields.custom.rm3d_data }}")
+    const clientId = rm3d_data.client_id
+    const clientSecret = rm3d_data.client_secret
+    const tenant = rm3d_data.tenant
+    const cabecalho =rm3d_data.cabecalho
     const productId = {{ product.id }}
 
     window.initRM3DModel({
