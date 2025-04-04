@@ -22,11 +22,11 @@
 
 <script>
   window.addEventListener('load', function () {
-    const rm3dData = JSON.parse("{{ product.metafields.custom.rm3d_data }}")
-    const clientId = rm3d_data.client_id
-    const clientSecret = rm3d_data.client_secret
-    const tenant = rm3d_data.tenant
-    const cabecalho =rm3d_data.cabecalho
+    const rm3dData = JSON.parse('{{ product.metafields.custom.rm3d_data }}')
+    const clientId = rm3dData.client_id
+    const clientSecret = rm3dData.client_secret
+    const tenant = rm3dData.tenant
+    const cabecalho =rm3dData.cabecalho
     const productId = {{ product.id }}
 
     window.initRM3DModel({
