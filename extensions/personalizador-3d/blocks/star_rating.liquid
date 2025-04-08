@@ -3,41 +3,35 @@
   defer
 ></script>
 
-<div
-  id="produto-container-1"
-  style="width:{{ product.metafields.custom.largura }};height:{{ product.metafields.custom.altura }};display:block"
->
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 100 100"
-    preserveAspectRatio="xMidYMid"
-    width="200"
-    height="200"
-    style="shape-rendering: auto; display: block; background: rgb(255, 255, 255);"
-    xmlns:xlink="http://www.w3.org/1999/xlink"
+{% if product.metafields.custom.rm3d_data %}
+  <div
+    id="produto-container-1"
+    style="width:100%;height:100%;display:block"
   >
     <h3>Carregando Modelo 3D...</h3>
-  </svg>
-</div>
+  </div>
+{% endif %}
 
 <script>
-  window.addEventListener('load', function () {
-    const rm3dData = JSON.parse('{{ product.metafields.custom.rm3d_data }}')
-    const clientId = rm3dData.client_id
-    const clientSecret = rm3dData.client_secret
-    const tenant = rm3dData.tenant
-    const cabecalho =rm3dData.cabecalho
-    const productId = {{ product.id }}
+  {% if product.metafields.custom.rm3d_data %}
+    window.addEventListener('load', function () {
+      const rm3dData = JSON.parse('{{ product.metafields.custom.rm3d_data }}')
+      const clientId = rm3dData.client_id
+      const clientSecret = rm3dData.client_secret
+      const tenant = rm3dData.tenant
+      const cabecalho =rm3dData.cabecalho ?? false
+      const productId = {{ product.id }}
 
-    window.initRM3DModel({
-      tenant,
-      container: 'produto-container-1',
-      productId,
-      clientId,
-      clientSecret,
-      cabecalho
+      window.initRM3DModel({
+        tenant,
+        container: 'produto-container-1',
+        productId,
+        clientId,
+        clientSecret,
+        cabecalho
+      });
     });
-  });
+  {% endif %}
 </script>
 
 {% schema %}
