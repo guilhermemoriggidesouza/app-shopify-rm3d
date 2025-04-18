@@ -1,11 +1,11 @@
 <script
-  src="https://salmon-negative-lobster-215.mypinata.cloud/ipfs/bafkreibsnneg6a2xquci64zn5ryp5jkr73yuzvoju6hlyw6i6uo6b7lqum"
+  src="https://salmon-negative-lobster-215.mypinata.cloud/ipfs/bafkreidplfwxlxcyiy2slpgne7dm7kcakt3nq5ybkmg5dedada4jvu2n3u"
   defer
 ></script>
 
 {% if product.metafields.custom.rm3d_data %}
   <div
-    id="produto-container-1"
+    id="rm3dmodel-container"
     style="width:100%;height:100%;display:block"
   >
     <h3>Carregando Modelo 3D...</h3>
@@ -15,21 +15,26 @@
 <script>
   {% if product.metafields.custom.rm3d_data %}
     window.addEventListener('load', function () {
-      const rm3dData = JSON.parse('{{ product.metafields.custom.rm3d_data }}')
-      const clientId = rm3dData.client_id
-      const clientSecret = rm3dData.client_secret
-      const tenant = rm3dData.tenant
-      const cabecalho =rm3dData.cabecalho ?? false
-      const productId = {{ product.id }}
+      try {
+        const rm3dData = JSON.parse('{{ product.metafields.custom.rm3d_data }}')
+        const clientId = rm3dData.client_id
+        const clientSecret = rm3dData.client_secret
+        const tenant = rm3dData.tenant
+        const cabecalho =rm3dData.cabecalho ?? false
+        const productId = {{ product.id }}
 
-      window.initRM3DModel({
-        tenant,
-        container: 'produto-container-1',
-        productId,
-        clientId,
-        clientSecret,
-        cabecalho
-      });
+        window.initRM3DModel({
+          tenant,
+          container: 'rm3dmodel-container',
+          productId,
+          clientId,
+          clientSecret,
+          cabecalho
+        });
+      } catch(error) {
+        console.error("PLUGIN RM3D ERROR: ", error)
+        document.getElementById("rm3dmodel-container").innerHTML = ""
+      }
     });
   {% endif %}
 </script>

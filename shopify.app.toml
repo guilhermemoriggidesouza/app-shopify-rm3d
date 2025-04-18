@@ -1,6 +1,6 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
-client_id = "b22494626227d6a5f80a3ac415531ba4"
+client_id = "3838753ddf99e5836fb5f43b01710933"
 name = "Personalizar modelo 3D"
 handle = "personalizar-modelo-3d"
 application_url = "https://shopify.dev/apps/default-app-home"
